@@ -14,17 +14,47 @@
     <!--The div element for the map -->
     <div id="map"></div>
     <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Oakland
+        var oakland = {lat: 37.8044, lng: -122.2712};
+        // The map, centered at Oakland
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 12, center: oakland});
+        // The marker, positioned at Oakland
+        // var marker = new google.maps.Marker({position: oakland, map: map});
+        // var infoWindow = new google.maps.InfoWindow({
+        //   content: '<h3>Brand new cabinet</h3>'
+        // })
+        // marker.addListener('click', function(){
+        //   infoWindow.open(map, marker);
+        // })
+
+        addMarker({
+          coords: {lat: 37.8044, lng: -122.2712}, //oakland
+          content: '<h3>Brand new cabinet</h3>'
+        });
+        addMarker({coords: {lat: 37.8715, lng: -122.2730}}); //berkeley
+        addMarker({coords: {lat: 37.8395, lng: -122.2892}}); // emeryville
+        // Add marker function
+        function addMarker (props){
+          var marker = new google.maps.Marker({
+            position: props.coords, 
+            map: map
+          });
+          // Check content
+          if(props.content){
+            var infoWindow = new google.maps.InfoWindow({
+              content: props.content
+            });
+            marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+            });
+          }
+        }
+      }
       
-// Initialize and add the map
-function initMap() {
-  // The location of Oakland
-  var oakland = {lat: 37.804363, lng: -122.271111};
-  // The map, centered at Oakland
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 12, center: oakland});
-  // The marker, positioned at Oakland
-  var marker = new google.maps.Marker({position: oakland, map: map});
-}
+      
     </script>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
@@ -32,7 +62,7 @@ function initMap() {
     * The callback parameter executes the initMap() function
     -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=key&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=xxx&callback=initMap">
     </script>
   </body>
 </html>
