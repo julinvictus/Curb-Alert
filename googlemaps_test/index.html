@@ -29,7 +29,6 @@
         // marker.addListener('click', function(){
         //   infoWindow.open(map, marker);
         // })
-
         // array of markers
         var markers = [{
           coords: {lat: 37.8044, lng: -122.2712}, //oakland
@@ -43,12 +42,10 @@
           coords: {lat: 37.8395, lng: -122.2892},
           content: '<h3>Shipping container</h3>'
         }];
-
         // loop thru markers
         for (let i=0; i<markers.length; i++){
           addMarker(markers[i]);
         }
-
         // Add marker function
         function addMarker (props){
           var marker = new google.maps.Marker({
