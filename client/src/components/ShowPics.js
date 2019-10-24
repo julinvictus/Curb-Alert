@@ -32,7 +32,7 @@ class ShowPic extends Component {
     let postList;
 
     if(!posts) {
-      postList = "there is no animal record!";
+      postList = "there is no post record!";
     } else {
       postList = posts.map((post, k) =>
         <PicCard post={post} key={k} />

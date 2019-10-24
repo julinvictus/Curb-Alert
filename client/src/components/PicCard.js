@@ -9,7 +9,7 @@ const PicCard = (props) => {
         <div className="card-container">
             <div className="desc">
                     {/* Use react route */}
-                    <Link to={`/api/posts/${post._id}`}>
+                    <Link to={`/show-pic-by-id/${post._id}`}>
                         <h3>{post.title}</h3>
                         <img src={`${post.image_url}`} width="100%" alt="free item" />
                     </Link> 

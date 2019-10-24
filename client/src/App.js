@@ -5,6 +5,7 @@ import './App.css';
 //import Claimed from './components/Claimed';
 //import ShowMap from './components/ShowMap';
 import ShowPics from './components/ShowPics';
+import ShowPicById from './components/ShowPicById';
 //import TakePic from './components/TakePic';
 //import UploadPic from './components/UploadPic';
 
@@ -16,6 +17,7 @@ class App extends Component {
           {/* <Route exact path='/' component={} /> */}
           {/* <Route path='/show-map' component={ShowMap} /> */}
           <Route path='/show-pics' component={ShowPics} />
+          <Route path='/show-pic-by-id/:id' component={ShowPicById} />
           
         </div>
       </Router>
