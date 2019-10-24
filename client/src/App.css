@@ -33,33 +33,23 @@
 }
 
 .Claimed {
-  background-color: #2c3e50;
   min-height: 100vh;
-  color: white;
 }
 
 .ShowMap {
-  background-color: #2c3e50;
   min-height: 100vh;
-  color: white;
 }
 
 .ShowPics {
-  background-color: #2c3e50;
   min-height: 100vh;
-  color: white;
 }
 
 .TakePic {
-  background-color: #2c3e50;
   min-height: 100vh;
-  color: white;
 }
 
 .UploadPic {
-  background-color: #2c3e50;
   min-height: 100vh;
-  color: white;
 }
 
 
@@ -81,7 +71,7 @@
 }
 
 .desc {
-  height: 130px;
+  height: 250px;
   padding: 10px;
 }
 
