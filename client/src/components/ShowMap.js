@@ -60,7 +60,7 @@ class ShowMap extends Component {
             </div>
 
           </div>
-
+              
           <div className="list">
                 {postList}
           </div>
