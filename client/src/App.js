@@ -7,7 +7,7 @@ import './App.css';
 import ShowPics from './components/ShowPics';
 import ShowPicById from './components/ShowPicById';
 //import TakePic from './components/TakePic';
-//import UploadPic from './components/UploadPic';
+
 
 class App extends Component {
   render() {
