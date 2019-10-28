@@ -7,7 +7,7 @@ class ShowPicById extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        //changed
+        
         title: "",
         image_url: ""
     };
@@ -19,11 +19,11 @@ class ShowPicById extends Component {
       .get('http://localhost:5000/api/posts/'+this.props.match.params.id)
       .then(res => {
         //console.log("Print-ShowPicById-API-response: res.data");
-        //changed
+        
         var data = res.data;
         console.log("data var: " +data);
         this.setState({
-            //changed
+          
           title: data.title,
           image_url: data.image_url
         })
