@@ -8,12 +8,7 @@ import axios from 'axios';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import CurrentLocation from './CurrentLocation';
 
-// const mapStyles = {
-//   width: '100%',
-//   height: '100%'
-// };
-
-export class MapContainer extends Component {
+export class ShowMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,28 +50,29 @@ export class MapContainer extends Component {
             console.log('Error from ShowPic');
           })
     };
-    // displayMarkers = () => {
-    //     return this.state.post.map((post, index) => {
-    //         console.log(post.latitude.$numberDecimal);
-    //       return <Marker key={index} id={index} position={{
-    //        lat: post.latitude.$numberDecimal,
-    //        lng: post.longitude.$numberDecimal
-    //      }}
+    displayMarkers = () => {
+        return this.state.post.map((post, index) => {
+            console.log(post.latitude.$numberDecimal);
+          return <Marker key={index} id={index} position={{
+           lat: post.latitude.$numberDecimal,
+           lng: post.longitude.$numberDecimal
+         }}
          
-    //      onClick={this.onMarkerClick}
-    //      name={post.title} 
-    //     />
-    //     //  <InfoWindow 
-    //     //     marker={this.state.activeMarker}  
-    //     //     visible={this.state.showingInfoWindow} 
-    //     //     onClose={this.onClose}
-    //     //     >
-    //     //     <div>
-    //     //         <h4>{this.state.selectedPlace.name}</h4>
-    //     //     </div>
-    //     // </InfoWindow>
-    //    })
-    //}
+         onClick={this.onMarkerClick}
+         name={'Current location'} 
+        >
+         <InfoWindow 
+            marker={this.state.activeMarker}  
+            visible={this.state.showingInfoWindow} 
+            //onClose={this.onClose}
+            >
+            <div>
+                <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+        </InfoWindow>
+        </Marker>
+       })
+    }
     render() {
         const posts = this.state.post;
         console.log(posts);
@@ -124,24 +120,25 @@ export class MapContainer extends Component {
                 </div> */}
             {/* </InfoWindow> */}
 
-            {/* {this.displayMarkers()} */}
+            {this.displayMarkers()}
+
             {/* {postsList} */}
             {/* <Marker
                 name={'Dolores park'}
                 position={{lat: 37.759703, lng: -122.428093}} />
             <Marker /> */}
-            {posts.map((post, index) => {
+            {/* {posts.map((post, index) => {
                 return <Marker
                     key={index}
                     position={{
-                                lat: post.latitude.$numberDecimal,
-                                lng: post.longitude.$numberDecimal
+                                lat: parseFloat(post.latitude.$numberDecimal),
+                                lng: parseFloat(post.longitude.$numberDecimal)
                     }}
                     //onClick={this.onMarkerClick}
                     //name={this.props.locations[idx].title}
 
                 />
-            })}
+            })} */}
 
             {/* <Marker name={'current location'} /> */}
         </CurrentLocation>
@@ -152,5 +149,5 @@ export class MapContainer extends Component {
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLEMAPS_KEY
-})(MapContainer);
+})(ShowMap);
 
