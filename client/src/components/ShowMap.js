@@ -55,30 +55,46 @@ export class MapContainer extends Component {
             console.log('Error from ShowPic');
           })
     };
-    displayMarkers = () => {
-        return this.state.post.map((post, index) => {
-            console.log(post.latitude.$numberDecimal);
-          return <Marker key={index} id={index} position={{
-           lat: post.latitude.$numberDecimal,
-           lng: post.longitude.$numberDecimal
-         }}
+    // displayMarkers = () => {
+    //     return this.state.post.map((post, index) => {
+    //         console.log(post.latitude.$numberDecimal);
+    //       return <Marker key={index} id={index} position={{
+    //        lat: post.latitude.$numberDecimal,
+    //        lng: post.longitude.$numberDecimal
+    //      }}
          
-         onClick={this.onMarkerClick}
-         name={post.title} 
-         />
-        //  <InfoWindow 
-        //     marker={this.state.activeMarker}  
-        //     visible={this.state.showingInfoWindow} 
-        //     onClose={this.onClose}
-        //     >
-        //     <div>
-        //         <h4>{this.state.selectedPlace.name}</h4>
-        //     </div>
-        // </InfoWindow>
-        })
-    }
+    //      onClick={this.onMarkerClick}
+    //      name={post.title} 
+    //     />
+    //     //  <InfoWindow 
+    //     //     marker={this.state.activeMarker}  
+    //     //     visible={this.state.showingInfoWindow} 
+    //     //     onClose={this.onClose}
+    //     //     >
+    //     //     <div>
+    //     //         <h4>{this.state.selectedPlace.name}</h4>
+    //     //     </div>
+    //     // </InfoWindow>
+    //    })
+    //}
     render() {
-        //const posts = this.state.post;
+        const posts = this.state.post;
+        console.log(posts);
+        let postsList;
+
+        // if(!posts) {
+        //     postsList = "there is no record!";
+        //   } else {
+        //     postsList = posts.map((post, index) => 
+        //         //console.log(post.latitude.$numberDecimal);
+        //       <Marker key={index} id={index} position={{
+        //        lat: post.latitude.$numberDecimal,
+        //        lng: post.longitude.$numberDecimal
+        //      }}/>
+        //     );
+        // }
+        // console.log(postsList);
+
         return (
         // <Map
         //     google={this.props.google}
@@ -90,10 +106,10 @@ export class MapContainer extends Component {
         //     }}
         // >
         
-        <CurrentLocation
-            centerAroundCurrentLocation
-            google={this.props.google}
-        >
+         <CurrentLocation
+              centerAroundCurrentLocation
+              google={this.props.google}
+         >  
             {/* <Marker
                 onClick={this.onMarkerClick}
                 name={'Nice chairs'}
@@ -107,10 +123,29 @@ export class MapContainer extends Component {
                 <h4>{this.state.selectedPlace.name}</h4>
                 </div> */}
             {/* </InfoWindow> */}
-            {this.displayMarkers()}
+
+            {/* {this.displayMarkers()} */}
+            {/* {postsList} */}
+            {/* <Marker
+                name={'Dolores park'}
+                position={{lat: 37.759703, lng: -122.428093}} />
+            <Marker /> */}
+            {posts.map((post, index) => {
+                return <Marker
+                    key={index}
+                    position={{
+                                lat: post.latitude.$numberDecimal,
+                                lng: post.longitude.$numberDecimal
+                    }}
+                    //onClick={this.onMarkerClick}
+                    //name={this.props.locations[idx].title}
+
+                />
+            })}
+
             {/* <Marker name={'current location'} /> */}
         </CurrentLocation>
-        // </Map>
+        //</Map>
         );
     }
 }
