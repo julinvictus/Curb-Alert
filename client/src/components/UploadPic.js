@@ -1,85 +1,40 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import ReactDom from 'react-dom';
+import S3FileUpload from 'react-s3';
+require('dotenv').config();
+
+const config = {
+    bucketName: 'techtonica-final-project',
+    region: 'us-west-1',
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
+}
+console.log("key "+config.accessKeyId);
+
 class UploadPic extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      success : false,
-      url : ""
+    // constructor(){
+    //   super();
+    // }
+    handleUpload(e){
+        console.log(e.target.files[0]);
+        S3FileUpload
+            .uploadFile(e.target.files[0], config)
+            // show image URL
+            .then(data => console.log(data.location))
+            .catch(err => console.error(err))
     }
-  }
-  
-  handleChange = (ev) => {
-    this.setState({success: false, url : ""});
-    
-  }
-  // Perform the upload
-  handleUpload = (ev) => {
-    let file = this.uploadInput.files[0];
-    // Split the filename to get the name and type
-    let fileParts = this.uploadInput.files[0].name.split('.');
-    let fileName = fileParts[0];
-    let fileType = fileParts[1];
-    console.log(fileName);
-    console.log(fileType);
-    console.log("Preparing the upload");
-    // const params = {
-    //     'fileName': fileParts[0],
-    //     'fileType': fileParts[1]
-    // };
-    //var querystring = require('querystring');
-    axios.post("http://localhost:5000/sign_s3", {
-      fileName : fileName,
-      fileType : fileType
-    })
-    .then(response => {
-      var returnData = response.data.data.returnData;
-      var signedRequest = returnData.signedRequest;
-      var url = returnData.url;
-      this.setState({url: url})
-      console.log("Received a signed request " + signedRequest);
-      
-     // Put the fileType in the headers for the upload
-      var options = {
-        headers: {
-          'Content-Type': fileType
-        }
-      };
-      axios.put(signedRequest,file,options)
-      .then(result => {
-        console.log("Response from s3")
-        this.setState({success: true});
-      })
-      .catch(error => {
-        console.log("ERROR " + JSON.stringify(error));
-      })
-    })
-    .catch(error => {
-      console.log(JSON.stringify(error));
-    })
-  }
-  
-  
-  render() {
-    const Success_message = () => (
-      <div style={{padding:50}}>
-        <h3 style={{color: 'green'}}>SUCCESSFUL UPLOAD</h3>
-        <a href={this.state.url}>Access the file here</a>
-        <br/>
-      </div>
-    )
-    return (
-      <div className="UploadPic">
-        <center>
-          <h1>UPLOAD A FILE</h1>
-          {this.state.success ? <Success_message/> : null}
-          <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file"/>
-          <br/>
-          <button onClick={this.handleUpload}>UPLOAD</button>
-        </center>
-      </div>
-    );
-  }
+    render(){
+        return (
+            <div className="UploadPic">
+                <center>
+                <h1>UPLOAD A FILE</h1>
+                <input onChange={this.handleUpload} type="file"/>
+                <br/>
+                </center>
+            </div>
+
+        )
+    }
 }
 
 export default UploadPic;
