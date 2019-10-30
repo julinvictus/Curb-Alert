@@ -53,7 +53,7 @@ class ShowPicById extends Component {
   render() {
       console.log('inside render function');
     //changed
-    const post = this.state.post;
+    //const post = this.state.post;
     //console.log("HELLO!"+post);
     console.dir(this.state);
     let PicItem = <div>

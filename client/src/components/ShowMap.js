@@ -5,7 +5,7 @@ import axios from 'axios';
 //import PicCard from './PicCard';
 
 
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import CurrentLocation from './CurrentLocation';
 
 export class ShowMap extends Component {
@@ -76,7 +76,7 @@ export class ShowMap extends Component {
     render() {
         const posts = this.state.post;
         console.log(posts);
-        let postsList;
+        //let postsList;
 
         // if(!posts) {
         //     postsList = "there is no record!";

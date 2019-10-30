@@ -2,7 +2,7 @@ var aws = require('aws-sdk');
 require('dotenv').config(); // Configure dotenv to load in the .env file
 // Configure aws with your accessKeyId and your secretAccessKey
 aws.config.update({
-  region: 'us-east-1', // Put your aws region here
+  region: 'us-west-1', // Put your aws region here
   accessKeyId: process.env.AWSAccessKeyId,
   secretAccessKey: process.env.AWSSecretKey
 })
@@ -23,8 +23,10 @@ exports.sign_s3 = (req,res) => {
   };
 // Make a request to the S3 API to get a signed URL which we can use to upload our file
 s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    console.log(data);
     if(err){
       console.log(err);
+      
       res.json({success: false, error: err})
     }
     // Data payload of what we are sending back, the url of the signedRequest and a URL where we can access the content after its saved. 

@@ -4,6 +4,8 @@ require('dotenv').config();
 const app = express();
 const usersRoutes = require('./routes/api/users');
 const postRoutes = require('./routes/api/posts');
+const sign_s3 = require('./controllers/sign_s3');
+
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 
@@ -19,5 +21,6 @@ app.get('/', (request, response) => {
 
 app.use('/api', usersRoutes);
 app.use('/api', postRoutes);
+app.use('/sign_s3', sign_s3.sign_s3);
 
 app.listen(port, () => console.log(`✨👾 Server running on port ${port}`));
