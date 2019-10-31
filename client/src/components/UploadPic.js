@@ -9,7 +9,6 @@ const config = {
     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
     secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY,
 }
-console.log("key "+config.accessKeyId);
 
 class UploadPic extends Component {
     // constructor(){
