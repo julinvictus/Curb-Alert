@@ -23,17 +23,17 @@ export class ShowMap extends Component {
     }
 
     onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
     onClose = props => {
         if (this.state.showingInfoWindow) {
-        this.setState({
-            showingInfoWindow: false,
-            activeMarker: null
-        });
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
         }
     };
     componentDidMount() {
@@ -57,20 +57,15 @@ export class ShowMap extends Component {
            lat: post.latitude.$numberDecimal,
            lng: post.longitude.$numberDecimal
          }}
-         
-         onClick={this.onMarkerClick}
-         name={'Current location'} 
-        >
-         <InfoWindow 
-            marker={this.state.activeMarker}  
-            visible={this.state.showingInfoWindow} 
-            //onClose={this.onClose}
-            >
-            <div>
-                <h4>{this.state.selectedPlace.name}</h4>
-            </div>
-        </InfoWindow>
-        </Marker>
+         onClick={() => console.log(post.title)}
+        //  onClick={this.onMarkerClick}
+        //  name={post.title} 
+        />
+        // <InfoWindow onClose={this.onClose}>
+        //     <div>
+        //       <h1>{post.latitude}</h1>
+        //     </div>
+        // </InfoWindow>
        })
     }
     render() {
@@ -110,17 +105,18 @@ export class ShowMap extends Component {
                 onClick={this.onMarkerClick}
                 name={'Nice chairs'}
             /> */}
+
+
+            {this.displayMarkers()}
             {/* <InfoWindow
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}
                 onClose={this.onClose}
-            > */}
-                {/* <div>
-                <h4>{this.state.selectedPlace.name}</h4>
-                </div> */}
-            {/* </InfoWindow> */}
-
-            {this.displayMarkers()}
+            > 
+                <div>
+                    <h4>hi</h4>
+                </div>
+            </InfoWindow> */}
 
             {/* {postsList} */}
             {/* <Marker
