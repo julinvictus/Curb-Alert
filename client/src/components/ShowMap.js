@@ -47,12 +47,13 @@ export class ShowMap extends Component {
 
           })
           .catch(err =>{
-            console.log('Error from ShowPic');
+            console.log('Error from ShowMap');
           })
     };
     displayMarkers = () => {
         return this.state.post.map((post, index) => {
-            console.log(post.latitude.$numberDecimal);
+            console.log(post.latitude);
+            console.log(post.longitude);
           return <Marker key={index} id={index} position={{
            lat: post.latitude.$numberDecimal,
            lng: post.longitude.$numberDecimal

@@ -14,14 +14,30 @@ const PostSchema = new mongoose.Schema({
     type: String
   },
   latitude: {
-    type: Number
+    type: mongoose.Types.Decimal128
   },
   longitude: {
-    type: Number
+    type: mongoose.Types.Decimal128
   },
   claimed: {
     type: Boolean
   },
+
+  // title: {
+  //   type: String
+
+  // },
+  // image_url: {
+  //   type: String
+
+  // },
+  // date_posted: {
+  //   type: Date
+
+  // },
+  // location: {
+  //   type: String
+  // }
 });
 
 module.exports = Post = mongoose.model('Post', PostSchema);
