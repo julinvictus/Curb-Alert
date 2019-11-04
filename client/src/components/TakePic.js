@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // source code : ./src/demo/AppWithImagePreview/ImagePreview
 import ImagePreview from './ImagePreview'; 
@@ -17,6 +18,7 @@ class TakePic extends Component {
   onTakePhotoAnimationDone (dataUri) {
     console.log('takePhoto');
     this.setState({ dataUri });
+    
   }
  
   render () {
