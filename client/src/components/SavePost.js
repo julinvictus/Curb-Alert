@@ -3,6 +3,8 @@ import '../App.css';
 import axios from 'axios';
 
 import TakePic from './TakePic';
+import UploadPic from './UploadPic';
+import ItemLocation from './ItemLocation';
 
 class SavePost extends Component {
   constructor() {
@@ -11,8 +13,8 @@ class SavePost extends Component {
       title: '',
       image_url:'',
       date_posted: new Date().toLocaleDateString(),
-      latitude:'',
-      longitude:'',
+      latitude: null,
+      longitude: null,
       claimed: false
     };
   }
@@ -99,28 +101,8 @@ class SavePost extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-
-                <div className='form-group'>
-                  <input
-                    type='integer'
-                    placeholder='Latitude'
-                    name='latitude'
-                    className='form-control'
-                    value={this.state.latitude}
-                    onChange={this.onChange}
-                  />
-                </div>
-
-                <div className='form-group'>
-                  <input
-                    type='integer'
-                    placeholder='Longitude'
-                    name='longitude'
-                    className='form-control'
-                    value={this.state.longitude}
-                    onChange={this.onChange}
-                  />
-                </div>
+                
+                <ItemLocation></ItemLocation>
 
                 <div className='form-group'>
                   <input
@@ -132,6 +114,7 @@ class SavePost extends Component {
                     onChange={this.onChange}
                   />
                 </div>
+                
 
                 <input
                     type="submit"
