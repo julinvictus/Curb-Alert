@@ -14,6 +14,7 @@ import ShowPicById from './components/ShowPicById';
 import ShowMap from './components/ShowMap';
 import UploadPic from './components/UploadPic';
 import TakePic from './components/TakePic';
+import ItemLocation from './components/ItemLocation';
 //import Claimed from './components/Claimed';
 
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path='/show-map' component={ShowMap} />
           <Route path='/upload-pic' component={UploadPic} />
           <Route path='/take-pic' component={TakePic} />
+          <Route path='/item-loc' component={ItemLocation} />
         
       </Router>
     );

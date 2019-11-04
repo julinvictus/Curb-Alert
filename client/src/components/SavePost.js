@@ -23,10 +23,7 @@ class SavePost extends Component {
         return (
             
         <div>
-            {/* {
-                (this.state.dataUri)
-                <ImagePreview dataUri={this.state.dataUri} />
-            } */}
+            <TakePic />
         </div>
         );
       }
