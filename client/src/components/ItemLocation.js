@@ -1,5 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Spinner from './Spinner';
+
 
 class ItemLocation extends React.Component {
     constructor(props){
@@ -53,7 +55,7 @@ class ItemLocation extends React.Component {
             
         }
             
-        return <div>Loading..</div>
+        return <Spinner />
     }
 }
 
