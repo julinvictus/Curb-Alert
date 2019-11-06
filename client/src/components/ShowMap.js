@@ -22,12 +22,13 @@ export class ShowMap extends Component {
         };
     }
 
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
-        });
+        })
+    }
     onClose = props => {
         if (this.state.showingInfoWindow) {
             this.setState({
@@ -52,23 +53,41 @@ export class ShowMap extends Component {
     };
     displayMarkers = () => {
         return this.state.post.map((post, index) => {
-            console.log(post.latitude);
-            console.log(post.longitude);
-          return <Marker key={index} id={index} position={{
-           lat: post.latitude.$numberDecimal,
-           lng: post.longitude.$numberDecimal
-         }}
-         onClick={() => console.log(post.title)}
-        //  onClick={this.onMarkerClick}
-        //  name={post.title} 
-        />
-        // <InfoWindow onClose={this.onClose}>
-        //     <div>
-        //       <h1>{post.latitude}</h1>
-        //     </div>
-        // </InfoWindow>
-       })
+            console.log(post.latitude.$numberDecimal);
+            console.log(post.longitude.$numberDecimal);
+             
+            return <Marker key={index} id={index} position={{
+                    lat: post.latitude.$numberDecimal,
+                    lng: post.longitude.$numberDecimal
+                }}
+                name={post.title} 
+                // onClick={() => console.log(post.title)}
+                onClick={this.onMarkerClick}
+               
+            />
+        }) 
     }
+
+    displayInfoWindow = () => {
+        const post = this.state.post.map((post, index) => {
+            //console.log(post.latitude.$numberDecimal);
+            //console.log(post.longitude.$numberDecimal);
+             
+            return <InfoWindow key={index} id={index}
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+        > 
+            <div>
+                <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+        </InfoWindow> 
+        
+        }) 
+        console.log(post)
+        return post;
+    }
+
     render() {
         const posts = this.state.post;
         console.log(posts);
@@ -102,13 +121,12 @@ export class ShowMap extends Component {
               centerAroundCurrentLocation
               google={this.props.google}
          >  
+            {this.displayMarkers()}
+            {this.displayInfoWindow()}
             {/* <Marker
                 onClick={this.onMarkerClick}
                 name={'Nice chairs'}
             /> */}
-
-
-            {this.displayMarkers()}
             {/* <InfoWindow
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}
