@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
+import Camera from 'react-html5-camera-photo';
+import ImagePreview from './ImagePreview'; 
 
 import TakePic from './TakePic';
 import UploadPic from './UploadPic';
@@ -67,6 +69,8 @@ class SavePost extends Component {
             </div>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">New post</h1>
+              <ImagePreview dataUri={this.props.history.location.state.uri} />
+              {console.log(this.props)}
               <form noValidate onSubmit={this.onSubmit}>
 
                 <div className='form-group'>

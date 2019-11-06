@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 // source code : ./src/demo/AppWithImagePreview/ImagePreview
 import ImagePreview from './ImagePreview'; 
@@ -24,10 +24,12 @@ class TakePic extends Component {
   render () {
     return (
       <div className="App">
-        {
-          (this.state.dataUri)
-            ? <ImagePreview dataUri={this.state.dataUri} />
-            : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />
+        {(this.state.dataUri) 
+          ? <Redirect to={{pathname: '/save-post', state: { uri: this.state.dataUri }}}/>
+          : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />
+          
+            // ? <ImagePreview dataUri={this.state.dataUri} />
+            // : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />
         }
       </div>
     );
