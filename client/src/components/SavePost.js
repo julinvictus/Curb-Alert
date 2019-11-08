@@ -40,7 +40,7 @@ class SavePost extends Component {
     };
     
     // transforms dataURI into blob
-    let myDataUri = {this.props.history.location.state.uri}
+    //let myDataUri = {this.props.history.location.state.uri}
     function dataURItoBlob(dataURI) {
         var binary = atob(dataURI.split(',')[1]);
         var array = [];
