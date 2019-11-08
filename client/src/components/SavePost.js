@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import Camera from 'react-html5-camera-photo';
+import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
 import ImagePreview from './ImagePreview'; 
+global.atob = require("atob");
+const Blob = require('node-blob');
 
 import TakePic from './TakePic';
 import UploadPic from './UploadPic';
 import ItemLocation from './ItemLocation';
+import savePostHelper from './savePostHelper';
 
 class SavePost extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      image_url:'',
+      image:'',
       date_posted: new Date().toLocaleDateString(),
       latitude: null,
       longitude: null,
@@ -29,13 +32,25 @@ class SavePost extends Component {
     e.preventDefault();
     const data = {
       title: this.state.title,
-      image_url: this.state.image_url,
+      image: this.state.image,
       date_posted: this.state.date_posted,
       latitude: this.state.latitude,
       longitude: this.state.longitude,
       claimed: this.state.claimed
     };
     
+    // transforms dataURI into blob
+    let myDataUri = {this.props.history.location.state.uri}
+    function dataURItoBlob(dataURI) {
+        var binary = atob(dataURI.split(',')[1]);
+        var array = [];
+        for(var i = 0; i < binary.length; i++) {
+            array.push(binary.charCodeAt(i));
+        }
+        return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    }
+    
+    // send to db
     axios
       .post('http://localhost:5000/api/posts')
       .then(res => {
@@ -69,21 +84,24 @@ class SavePost extends Component {
             </div>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">New post</h1>
-              <ImagePreview dataUri={this.props.history.location.state.uri} />
+              <ImagePreview 
+                dataUri={this.props.history.location.state.uri} 
+              />
               {console.log(this.props)}
-              <form noValidate onSubmit={this.onSubmit}>
+              <br />
+              <form noValidate onSubmit={this.savePostHelper}>
 
+                {/* <UploadPic></UploadPic> */}
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Image URL'
-                    name='image_url'
+                    placeholder='Image'
+                    name='image'
                     className='form-control'
-                    value={this.state.image_url}
+                    value={this.props.history.location.state.uri}
                     onChange={this.onChange}
                   />
                 </div>
-
                 <div className='form-group'>
                   <input
                     type='text'
@@ -124,6 +142,7 @@ class SavePost extends Component {
                     type="submit"
                     className="btn btn-outline-warning btn-block mt-4"
                 />
+                <br />
               </form>
           </div>
           </div>

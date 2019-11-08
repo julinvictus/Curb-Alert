@@ -26,7 +26,9 @@ class TakePic extends Component {
       <div className="App">
         {(this.state.dataUri) 
           ? <Redirect to={{pathname: '/save-post', state: { uri: this.state.dataUri }}}/>
-          : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />
+          : <Camera 
+              onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone}   
+            />
           
             // ? <ImagePreview dataUri={this.state.dataUri} />
             // : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />

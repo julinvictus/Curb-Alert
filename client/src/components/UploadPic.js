@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 //import ReactDom from 'react-dom';
 import S3FileUpload from 'react-s3';
+import TakePic from './TakePic';
+import ItemLocation from './ItemLocation';
+import SavePost from './SavePost';
+import ImagePreview from './ImagePreview'; 
+import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
+import ImagePreview from './ImagePreview'; 
 require('dotenv').config();
 
 const config = {
@@ -15,7 +21,7 @@ class UploadPic extends Component {
     //   super();
     // }
     handleUpload(e){
-        console.log(e.target.files[0]);
+        console.log('e.target.files[0]');
         S3FileUpload
             .uploadFile(e.target.files[0], config)
             // show image URL
@@ -24,6 +30,8 @@ class UploadPic extends Component {
     }
     render(){
         return (
+
+            //original***************************
             <div className="UploadPic">
                 <center>
                 <h1>UPLOAD A FILE</h1>
@@ -31,6 +39,23 @@ class UploadPic extends Component {
                 <br/>
                 </center>
             </div>
+
+            // <div className="UploadPic">
+            //     <ImagePreview dataUri={this.props.history.location.state.uri} />
+            //     <center>
+            //     <h1>UPLOAD A FILE</h1>
+            //     <input 
+            //         type='text'
+            //         placeholder='Image URL'
+            //         name='image_url'
+            //         className='form-control'
+            //         value={this.props.history.location.state.uri}
+            //         onChange={this.handleUpload}
+            //     />
+            //     <br/>
+            //     </center>
+            // </div>
+
 
         )
     }
