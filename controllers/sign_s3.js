@@ -1,11 +1,11 @@
 var aws = require('aws-sdk'); 
 require('dotenv').config(); // Configure dotenv to load in the .env file
-// Configure aws with your accessKeyId and your secretAccessKey
-aws.config.update({
-  region: 'us-west-1', // Put your aws region here
-  accessKeyId: process.env.AWSAccessKeyId,
-  secretAccessKey: process.env.AWSSecretKey
-})
+  // Configure aws with your accessKeyId and your secretAccessKey
+  aws.config.update({
+    region: 'us-west-1', // Put your aws region here
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey
+  })
 
 const S3_BUCKET = process.env.bucket
 // Now lets export this function so we can call it from somewhere else
@@ -30,7 +30,7 @@ s3.getSignedUrl('putObject', s3Params, (err, data) => {
       res.json({success: false, error: err})
     }
     // Data payload of what we are sending back, the url of the signedRequest and a URL where we can access the content after its saved. 
-const returnData = {
+    const returnData = {
       signedRequest: data,
       url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
     };

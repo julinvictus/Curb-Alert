@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
 import ImagePreview from './ImagePreview'; 
+import ItemLocation from './ItemLocation';
+
 global.atob = require("atob");
 const Blob = require('node-blob');
-
-import TakePic from './TakePic';
-import UploadPic from './UploadPic';
-import ItemLocation from './ItemLocation';
-import savePostHelper from './savePostHelper';
 
 class SavePost extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      image:'',
+      image_url:'',
       date_posted: new Date().toLocaleDateString(),
       latitude: null,
       longitude: null,
@@ -32,7 +28,7 @@ class SavePost extends Component {
     e.preventDefault();
     const data = {
       title: this.state.title,
-      image: this.state.image,
+      image_url: this.state.image,
       date_posted: this.state.date_posted,
       latitude: this.state.latitude,
       longitude: this.state.longitude,
@@ -48,6 +44,17 @@ class SavePost extends Component {
             array.push(binary.charCodeAt(i));
         }
         return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+    }
+
+    // generate name for image
+    const generateNameForImage = (length) => {
+      let result           = '';
+      let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
     }
     
     // send to db
@@ -87,12 +94,12 @@ class SavePost extends Component {
               <ImagePreview 
                 dataUri={this.props.history.location.state.uri} 
               />
-              {console.log(this.props)}
+              {console.log(this.props.history.location.state.uri)}
               <br />
-              <form noValidate onSubmit={this.savePostHelper}>
+              <form noValidate onSubmit={this.onSubmit}>
 
                 {/* <UploadPic></UploadPic> */}
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='text'
                     placeholder='Image'
@@ -101,7 +108,7 @@ class SavePost extends Component {
                     value={this.props.history.location.state.uri}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
                 <div className='form-group'>
                   <input
                     type='text'
