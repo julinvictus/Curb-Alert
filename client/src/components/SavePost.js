@@ -3,9 +3,8 @@ import '../App.css';
 import axios from 'axios';
 import ImagePreview from './ImagePreview'; 
 import ItemLocation from './ItemLocation';
-
-global.atob = require("atob");
-const Blob = require('node-blob');
+var aws = require('aws-sdk'); 
+require('dotenv').config();
 
 class SavePost extends Component {
   constructor() {
@@ -14,11 +13,27 @@ class SavePost extends Component {
       title: '',
       image_url:'',
       date_posted: new Date().toLocaleDateString(),
-      latitude: null,
-      longitude: null,
+      latitude: '',
+      longitude: '',
       claimed: false
+      // date_posted: new Date().toLocaleDateString(),
+      // latitude: null,
+      // longitude: null,
+      // claimed: false
     };
   }
+
+  // get curent location
+  componentDidMount(){
+    window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+            this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude})
+        },
+        (err) => {
+            console.log('Error from geolocation')
+        }
+    );
+}
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -28,47 +43,65 @@ class SavePost extends Component {
     e.preventDefault();
     const data = {
       title: this.state.title,
-      image_url: this.state.image,
+      image_url: this.state.image_url,
       date_posted: this.state.date_posted,
       latitude: this.state.latitude,
       longitude: this.state.longitude,
       claimed: this.state.claimed
     };
     
-    // transforms dataURI into blob
-    //let myDataUri = {this.props.history.location.state.uri}
-    function dataURItoBlob(dataURI) {
-        var binary = atob(dataURI.split(',')[1]);
-        var array = [];
-        for(var i = 0; i < binary.length; i++) {
-            array.push(binary.charCodeAt(i));
-        }
-        return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-    }
+    // let myDataUri = this.props.history.location.state.uri;
 
-    // generate name for image
-    const generateNameForImage = (length) => {
-      let result           = '';
-      let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      let charactersLength = characters.length;
-      for ( var i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      }
-      return result;
-    }
+    // // transform dataURI into base64
+    // const base64Data = new Buffer.from(myDataUri.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    // //console.log(base64Data);
+
+    // // Configure aws with your accessKeyId and your secretAccessKey
+    // aws.config.update({
+    //     region: 'us-west-1', // Put your aws region here
+    //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
+    //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY
+    // })
+
+    // const S3_BUCKET = process.env.REACT_APP_BUCKET
+    // const s3 = new aws.S3();  // Create a new instance of S3
+
+    // // Set up the payload of what we are sending to the S3 api
+    // const s3Params = {
+    //   Bucket: S3_BUCKET, // bucket
+    //   Key: new Date().getTime() + '.jpg', // folder/file
+    //   Body: base64Data,
+    //   ACL:'public-read',
+    //   ContentEncoding: 'base64',
+    //   ContentType: 'image/jpeg'
+    // };
+
+    // // upload to s3
+    // s3.upload(s3Params, function (err, data) {
+    //     if (err) {
+    //         console.log("Error", err);
+    //     } if (data) {
+    //         console.log("Upload Success", data.Location);
+    //     }
+    // });
     
     // send to db
     axios
-      .post('http://localhost:5000/api/posts')
+      .post('http://localhost:5000/api/posts', data)
       .then(res => {
         this.setState({
           title: '',
-          image_url:'',
-          date_posted: new Date().toLocaleDateString(),
+          image_url: '',
+          date_posted: '',
+          // image_url: data.Location,
+          // date_posted: new Date().toLocaleDateString(),
           latitude:'',
           longitude:'',
-          claimed: false
+          claimed: ''
+          // claimed: false
         })
+        this.props.history.push('/');
+        console.log('Post added to db')
       })
       .catch(err =>{
         console.log('Error from SavePost');
@@ -77,7 +110,7 @@ class SavePost extends Component {
     
   render() {
     return (
-      <div className="CreateSighting">
+      <div className="SavePost">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -94,21 +127,10 @@ class SavePost extends Component {
               <ImagePreview 
                 dataUri={this.props.history.location.state.uri} 
               />
-              {console.log(this.props.history.location.state.uri)}
+              {/* {console.log(this.props.history.location.state.uri)} */}
               <br />
               <form noValidate onSubmit={this.onSubmit}>
 
-                {/* <UploadPic></UploadPic> */}
-                {/* <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Image'
-                    name='image'
-                    className='form-control'
-                    value={this.props.history.location.state.uri}
-                    onChange={this.onChange}
-                  />
-                </div> */}
                 <div className='form-group'>
                   <input
                     type='text'
@@ -119,8 +141,18 @@ class SavePost extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-
                 <div className='form-group'>
+                  <input
+                    type='text'
+                    placeholder='Image url'
+                    name='image_url'
+                    className='form-control'
+                    value={this.state.image_url}
+                    onChange={this.onChange}
+                  />
+                </div>
+
+                {/* <div className='form-group'>
                   <input
                     type='text'
                     placeholder='Date Posted'
@@ -129,11 +161,32 @@ class SavePost extends Component {
                     value={this.state.date_posted}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
                 
-                <ItemLocation></ItemLocation>
+                {/* <ItemLocation></ItemLocation> */}
 
+                {/* <div className='form-group'>
+                    <input
+                        type='integer'
+                        placeholder='Latitude'
+                        name='latitude'
+                        className='form-control'
+                        value={this.state.latitude}
+                        onChange={this.onChange}
+                    /> 
+                </div>
                 <div className='form-group'>
+                    <input
+                        type='integer'
+                        placeholder='Longitude'
+                        name='longitude'
+                        className='form-control'
+                        value={this.state.longitude}
+                        onChange={this.onChange}
+                    />
+                </div> */}
+
+                {/* <div className='form-group'>
                   <input
                     type='boolean'
                     placeholder='Claimed?'
@@ -142,7 +195,7 @@ class SavePost extends Component {
                     value={this.state.claimed}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
                 
 
                 <input
