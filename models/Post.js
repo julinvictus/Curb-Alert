@@ -10,9 +10,9 @@ const PostSchema = new mongoose.Schema({
   date_posted: {
     type: Date
   },
-  location: {
-    type: String
-  },
+  // location: {
+  //   type: String
+  // },
   latitude: {
     type: mongoose.Types.Decimal128
   },
