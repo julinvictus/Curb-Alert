@@ -5,13 +5,14 @@ import ImagePreview from './ImagePreview';
 import ItemLocation from './ItemLocation';
 var aws = require('aws-sdk'); 
 require('dotenv').config();
+const imageName = new Date().getTime() + '.jpg';
 
 class SavePost extends Component {
   constructor() {
     super();
     this.state = {
       title: '',
-      image_url:'https://techtonica-final-project.s3-us-west-1.amazonaws.com/'+ new Date().getTime() + '.jpg',
+      image_url:'https://techtonica-final-project.s3-us-west-1.amazonaws.com/'+ imageName,
       date_posted: new Date().toLocaleDateString(),
       latitude: '',
       longitude: '',
@@ -52,6 +53,7 @@ class SavePost extends Component {
       claimed: this.state.claimed
     };
     
+    // my datauri img coming from TakePic
     let myDataUri = this.props.history.location.state.uri;
 
     // transform dataURI into base64
@@ -67,11 +69,13 @@ class SavePost extends Component {
 
     const S3_BUCKET = process.env.REACT_APP_BUCKET
     const s3 = new aws.S3();  // Create a new instance of S3
+    //const imageName = new Date().getTime() + '.jpg';
 
     // Set up the payload of what we are sending to the S3 api
     const s3Params = {
       Bucket: S3_BUCKET, // bucket
-      Key: new Date().getTime() + '.jpg', // folder/file
+      //Key: new Date().getTime() + '.jpg', 
+      Key: imageName,
       Body: base64Data,
       ACL:'public-read',
       ContentEncoding: 'base64',
@@ -85,7 +89,8 @@ class SavePost extends Component {
         } if (dataToS3) {
             console.log("Upload Success", dataToS3.Location);
             //this.addUrlToDb(data);
-            dataToDb.image_url = dataToS3.Location;
+            // dataToDb.image_url = dataToS3.Location; // empty on db
+            // console.log(dataToDb.image_url);
         }
     });
 
