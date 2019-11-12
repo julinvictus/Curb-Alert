@@ -13,7 +13,7 @@ router.get('/test', (req, res) => res.send('post route testing!'));
 // @description Get all posts
 // @access Public
 router.get('/posts', (req, res) => {
-  Post.find()
+  Post.find().sort({"date_posted": -1})
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: 'No posts found' }));
 });
