@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
 import ImagePreview from './ImagePreview'; 
-import ItemLocation from './ItemLocation';
 var aws = require('aws-sdk'); 
 require('dotenv').config();
 const imageName = new Date().getTime() + '.jpg';
@@ -69,12 +68,10 @@ class SavePost extends Component {
 
     const S3_BUCKET = process.env.REACT_APP_BUCKET
     const s3 = new aws.S3();  // Create a new instance of S3
-    //const imageName = new Date().getTime() + '.jpg';
 
     // Set up the payload of what we are sending to the S3 api
     const s3Params = {
       Bucket: S3_BUCKET, // bucket
-      //Key: new Date().getTime() + '.jpg', 
       Key: imageName,
       Body: base64Data,
       ACL:'public-read',
@@ -124,12 +121,7 @@ class SavePost extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <br />
-              {/* <Link to="/" className="btn btn-outline-warning float-left">
-                  See Animal List
-              </Link>
-              <Link to="/sighting" className="btn btn-outline-warning float-left">
-                  See All Sightings
-              </Link> */}
+
             </div>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">New post</h1>
@@ -149,63 +141,7 @@ class SavePost extends Component {
                     value={this.state.title}
                     onChange={this.onChange}
                   />
-                </div>
-                {/* <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Image url'
-                    name='image_url'
-                    className='form-control'
-                    value={this.state.image_url}
-                    onChange={this.onChange}
-                  />
-                </div> */}
-
-                {/* <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Date Posted'
-                    name='date_posted'
-                    className='form-control'
-                    value={this.state.date_posted}
-                    onChange={this.onChange}
-                  />
-                </div> */}
-                
-                {/* <ItemLocation></ItemLocation> */}
-
-                {/* <div className='form-group'>
-                    <input
-                        type='integer'
-                        placeholder='Latitude'
-                        name='latitude'
-                        className='form-control'
-                        value={this.state.latitude}
-                        onChange={this.onChange}
-                    /> 
-                </div>
-                <div className='form-group'>
-                    <input
-                        type='integer'
-                        placeholder='Longitude'
-                        name='longitude'
-                        className='form-control'
-                        value={this.state.longitude}
-                        onChange={this.onChange}
-                    />
-                </div> */}
-
-                {/* <div className='form-group'>
-                  <input
-                    type='boolean'
-                    placeholder='Claimed?'
-                    name='claimed'
-                    className='form-control'
-                    value={this.state.claimed}
-                    onChange={this.onChange}
-                  />
-                </div> */}
-                
+                </div> 
 
                 <input
                     type="submit"
