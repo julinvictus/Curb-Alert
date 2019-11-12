@@ -43,27 +43,16 @@ class ShowPic extends Component {
       <div className="ShowPics">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <br />
-              <h2 className="display-4 text-center">CURB-ALERT</h2>
+            <div className="col-md-8">
+              <div className="list">
+                  {postList}
+              </div>
             </div>
 
-            <div className="col-md-11">
-              
-              {/* <Link to="/create-sighting" className="btn btn-outline-warning float-right">
-                + Add New Sighting
-              </Link>
-              <Link to="/sighting" className="btn btn-outline-warning float-right">
-                See All Sightings
-              </Link> */}
-              <hr />
-            </div>
-
+            
           </div>
 
-          <div className="list">
-                {postList}
-          </div>
+          
         </div>
       </div>
     );

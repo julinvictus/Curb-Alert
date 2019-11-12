@@ -106,7 +106,7 @@ class SavePost extends Component {
           longitude:'',
           claimed: ''
         })
-        this.props.history.push('/');
+        this.props.history.push('/show-pics');
         console.log('Post added to db')
       })
       .catch(err =>{
