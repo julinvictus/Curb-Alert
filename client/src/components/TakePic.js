@@ -4,9 +4,6 @@ import 'react-html5-camera-photo/build/css/index.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 // source code : ./src/demo/AppWithImagePreview/ImagePreview
-import ImagePreview from './ImagePreview'; 
-import SavePost from './SavePost';
-
  
 class TakePic extends Component {
   constructor (props, context) {

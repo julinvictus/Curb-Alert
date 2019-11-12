@@ -29,26 +29,26 @@ class ItemLocation extends React.Component {
             return (
                 <form noValidate onSubmit={this.onSubmit}>
                 <div className='form-group'>
-                <input
-                    type='integer'
-                    placeholder='Latitude'
-                    name='latitude'
-                    className='form-control'
-                    value={this.state.lat}
-                    onChange={this.onChange}
-                /> 
-            </div>
-            <div className='form-group'>
-            <input
-                    type='integer'
-                    placeholder='Longitude'
-                    name='longitude'
-                    className='form-control'
-                    value={this.state.lng}
-                    onChange={this.onChange}
-            />
-            </div>
-            </form>
+                    <input
+                        type='integer'
+                        placeholder='Latitude'
+                        name='latitude'
+                        className='form-control'
+                        value={this.state.lat}
+                        onChange={this.onChange}
+                    /> 
+                </div>
+                <div className='form-group'>
+                    <input
+                        type='integer'
+                        placeholder='Longitude'
+                        name='longitude'
+                        className='form-control'
+                        value={this.state.lng}
+                        onChange={this.onChange}
+                    />
+                </div>
+                </form>
             )
             
                 {/* <div>Latitude: {this.state.lat}<br />Longitude: {this.state.lng}</div>  */}

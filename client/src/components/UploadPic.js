@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 //import ReactDom from 'react-dom';
 import S3FileUpload from 'react-s3';
 
-import TakePic from './TakePic';
-import ItemLocation from './ItemLocation';
-import SavePost from './SavePost';
-import ImagePreview from './ImagePreview'; 
-import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
-
 global.atob = require("atob");
 const Blob = require('node-blob');
 
