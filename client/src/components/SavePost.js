@@ -11,37 +11,39 @@ class SavePost extends Component {
     super();
     this.state = {
       title: '',
-      image_url:'',
+      image_url:'https://techtonica-final-project.s3-us-west-1.amazonaws.com/'+ new Date().getTime() + '.jpg',
       date_posted: new Date().toLocaleDateString(),
       latitude: '',
       longitude: '',
       claimed: false
-      // date_posted: new Date().toLocaleDateString(),
-      // latitude: null,
-      // longitude: null,
-      // claimed: false
     };
   }
 
-  // get curent location
+  // get current location
   componentDidMount(){
     window.navigator.geolocation.getCurrentPosition(
         (position) => {
-            this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude})
+          this.setState({ 
+            latitude: position.coords.latitude, 
+            longitude: position.coords.longitude})
         },
         (err) => {
-            console.log('Error from geolocation')
+          console.log('Error from geolocation')
         }
     );
-}
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // addUrlToDb = (data) => {
+  //   this.setState({ image_url: data.Location });
+  // } 
+
   onSubmit = e => {
     e.preventDefault();
-    const data = {
+    const dataToDb = {
       title: this.state.title,
       image_url: this.state.image_url,
       date_posted: this.state.date_posted,
@@ -50,55 +52,57 @@ class SavePost extends Component {
       claimed: this.state.claimed
     };
     
-    // let myDataUri = this.props.history.location.state.uri;
+    let myDataUri = this.props.history.location.state.uri;
 
-    // // transform dataURI into base64
-    // const base64Data = new Buffer.from(myDataUri.replace(/^data:image\/\w+;base64,/, ""), 'base64');
-    // //console.log(base64Data);
+    // transform dataURI into base64
+    const base64Data = new Buffer.from(myDataUri.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    //console.log(base64Data);
 
-    // // Configure aws with your accessKeyId and your secretAccessKey
-    // aws.config.update({
-    //     region: 'us-west-1', // Put your aws region here
-    //     accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
-    //     secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY
-    // })
+    // Configure aws with your accessKeyId and your secretAccessKey
+    aws.config.update({
+        region: 'us-west-1', // Put your aws region here
+        accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
+        secretAccessKey: process.env.REACT_APP_AWS_SECRET_KEY
+    })
 
-    // const S3_BUCKET = process.env.REACT_APP_BUCKET
-    // const s3 = new aws.S3();  // Create a new instance of S3
+    const S3_BUCKET = process.env.REACT_APP_BUCKET
+    const s3 = new aws.S3();  // Create a new instance of S3
 
-    // // Set up the payload of what we are sending to the S3 api
-    // const s3Params = {
-    //   Bucket: S3_BUCKET, // bucket
-    //   Key: new Date().getTime() + '.jpg', // folder/file
-    //   Body: base64Data,
-    //   ACL:'public-read',
-    //   ContentEncoding: 'base64',
-    //   ContentType: 'image/jpeg'
-    // };
+    // Set up the payload of what we are sending to the S3 api
+    const s3Params = {
+      Bucket: S3_BUCKET, // bucket
+      Key: new Date().getTime() + '.jpg', // folder/file
+      Body: base64Data,
+      ACL:'public-read',
+      ContentEncoding: 'base64',
+      ContentType: 'image/jpeg'
+    };
 
-    // // upload to s3
-    // s3.upload(s3Params, function (err, data) {
-    //     if (err) {
-    //         console.log("Error", err);
-    //     } if (data) {
-    //         console.log("Upload Success", data.Location);
-    //     }
-    // });
+    // upload to s3
+    s3.upload(s3Params, function (err, dataToS3) {
+        if (err) {
+            console.log("Error", err);
+        } if (dataToS3) {
+            console.log("Upload Success", dataToS3.Location);
+            //this.addUrlToDb(data);
+            dataToDb.image_url = dataToS3.Location;
+        }
+    });
+
+    //console.log(data.Location);
+    //this.setState({ image_url: data.Location }); // no url on db
     
     // send to db
     axios
-      .post('http://localhost:5000/api/posts', data)
+      .post('http://localhost:5000/api/posts', dataToDb)
       .then(res => {
         this.setState({
           title: '',
           image_url: '',
           date_posted: '',
-          // image_url: data.Location,
-          // date_posted: new Date().toLocaleDateString(),
           latitude:'',
           longitude:'',
           claimed: ''
-          // claimed: false
         })
         this.props.history.push('/');
         console.log('Post added to db')
@@ -106,7 +110,7 @@ class SavePost extends Component {
       .catch(err =>{
         console.log('Error from SavePost');
       })
-  };
+    };
     
   render() {
     return (
@@ -141,7 +145,7 @@ class SavePost extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <div className='form-group'>
+                {/* <div className='form-group'>
                   <input
                     type='text'
                     placeholder='Image url'
@@ -150,7 +154,7 @@ class SavePost extends Component {
                     value={this.state.image_url}
                     onChange={this.onChange}
                   />
-                </div>
+                </div> */}
 
                 {/* <div className='form-group'>
                   <input
