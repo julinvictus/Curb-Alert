@@ -47,12 +47,8 @@ class ShowPic extends Component {
               <div className="list">
                   {postList}
               </div>
-            </div>
-
-            
+            </div>           
           </div>
-
-          
         </div>
       </div>
     );
