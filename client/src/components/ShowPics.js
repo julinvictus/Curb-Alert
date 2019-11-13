@@ -15,7 +15,7 @@ class ShowPic extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/api/posts')
+      .get('/api/posts')
       .then(res => {
         this.setState({
           post: res.data
