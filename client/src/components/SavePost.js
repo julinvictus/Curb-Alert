@@ -96,7 +96,7 @@ class SavePost extends Component {
     
     // send to db
     axios
-      .post('http://localhost:5000/api/posts', dataToDb)
+      .post('/api/posts', dataToDb)
       .then(res => {
         this.setState({
           title: '',

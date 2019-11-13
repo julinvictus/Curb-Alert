@@ -16,7 +16,7 @@ class ShowPicById extends Component {
   componentDidMount() {
     console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:5000/api/posts/'+this.props.match.params.id)
+      .get('/api/posts/'+this.props.match.params.id)
       .then(res => {
         //console.log("Print-ShowPicById-API-response: res.data");
         
