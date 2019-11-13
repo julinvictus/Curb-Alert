@@ -1,6 +1,9 @@
 # Curb-Alert
 Techtonica final project
 
+Deployed at:
+[curb-alert-app.herokuapp.com](https://curb-alert-app.herokuapp.com/)
+
 Run server: 
 ```
 $ npm start
