@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juliana",
@@ -22,5 +23,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
-  }
+  },
+  "engines": {
+    "node": "12.8.1"
+}
 }

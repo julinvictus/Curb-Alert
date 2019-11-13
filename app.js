@@ -4,17 +4,20 @@ require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 const port = process.env.PORT || 5000;
 
 const usersRoutes = require('./routes/api/users');
 const postRoutes = require('./routes/api/posts');
-const sign_s3 = require('./controllers/sign_s3');
 
 // Connect Database
 connectDB()
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
+
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // body-parser
 app.use(bodyParser.json())
@@ -30,6 +33,10 @@ app.get('/', (request, response) => {
 
 app.use('/api', usersRoutes);
 app.use('/api', postRoutes);
-app.use('/sign_s3', sign_s3.sign_s3);
+
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => console.log(`✨👾 Server running on port ${port}`));
