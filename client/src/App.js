@@ -23,6 +23,7 @@ class App extends Component {
     return (
       <Router>
         <Navbar bg="light" expand="lg">
+          <div className="container">
             <Navbar.Brand href="#home">CURB-ALERT</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -35,6 +36,7 @@ class App extends Component {
                 <Button variant="outline-success">Search</Button>
             </Form> */}
             </Navbar.Collapse>
+          </div>
         </Navbar>
         <div className="container">
           <br />
