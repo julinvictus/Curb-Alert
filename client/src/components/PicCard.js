@@ -6,15 +6,38 @@ const PicCard = (props) => {
     const  post  = props.post;
 
     return(
-        <div className="card-container">
-            <div className="desc">
-                    {/* Use react route */}
-                    <Link to={`/show-pic-by-id/${post._id}`}>
-                        <h3>{post.title}</h3>
+        <Link to={`/show-pic-by-id/${post._id}`}>
+        <div className="ui link cards">
+            
+                <div className="card">
+                    <div className="content">
+                        <div className="header">{post.title}</div>      
+                    </div>
+                    <div className="image">
                         <img src={`${post.image_url}`} width="100%" alt="free item" />
-                    </Link> 
-            </div>
+                    </div>
+                    
+                    <div className="extra content">
+                        <span className="left floated">
+                            Posted in {post.date_posted}
+                        </span>
+                        
+                    </div>
+                
+                </div>   
         </div>
+        </Link> 
+        
+
+        //   <div className="card-container">
+        //      <div className="desc"> 
+        //          Use react route 
+        //              <Link to={`/show-pic-by-id/${post._id}`}>
+        //                  <h3>{post.title}</h3>
+        //                 <img src={`${post.image_url}`} width="100%" alt="free item" />
+        //              </Link> 
+        //      </div>
+        //  </div>
     )
 };
 

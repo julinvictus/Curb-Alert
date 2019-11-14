@@ -43,7 +43,7 @@ class ShowPic extends Component {
       <div className="ShowPics">
         <div className="container">
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-12">
               <div className="list">
                   {postList}
               </div>
