@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+const moment = require('moment');
 
 const PicCard = (props) => {
     const  post  = props.post;
@@ -19,7 +20,7 @@ const PicCard = (props) => {
                     
                     <div className="extra content">
                         <span className="left floated">
-                            Posted in {post.date_posted}
+                            Posted in {moment(post.date_posted).format('L')}
                         </span>
                         
                     </div>
