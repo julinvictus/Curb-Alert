@@ -20,7 +20,15 @@ const PicCard = (props) => {
                     
                     <div className="extra content">
                         <span className="left floated">
+<<<<<<< Updated upstream
                             Posted in {moment(post.date_posted).format('L')}
+=======
+<<<<<<< HEAD
+                            Posted on {moment(post.date_posted).format('L')}
+=======
+                            Posted in {moment(post.date_posted).format('L')}
+>>>>>>> 29a4c230df95ee92b538b763e3e1dffefa41bd93
+>>>>>>> Stashed changes
                         </span>
                         
                     </div>
