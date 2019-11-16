@@ -61,6 +61,7 @@ export class ShowMap extends Component {
                     lng: post.longitude.$numberDecimal
                 }}
                 name={post.title} 
+                image={post.image_url}
                 // onClick={() => console.log(post.title)}
                 onClick={this.onMarkerClick}
                
@@ -79,7 +80,11 @@ export class ShowMap extends Component {
             onClose={this.onClose}
         > 
             <div>
-                <h4>{this.state.selectedPlace.name}</h4>
+                <h6>{this.state.selectedPlace.name}</h6>
+                <img src={this.state.selectedPlace.image}  width="100%"/>
+                {/* <img src={`${post.image_url}`}  width="100%"/> */}
+                {/* <img src={post.image_url} width="100%" /> */}
+                {/* <img src={this.state.post.image_url}  /> //nothing */}
             </div>
         </InfoWindow> 
         
