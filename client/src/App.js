@@ -41,8 +41,8 @@ class App extends Component {
             <Navbar.Brand href="#home">CURB-ALERT</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-                <Nav.Link href="/take-pic"><i class="camera icon"></i></Nav.Link>
+            <Nav className="mr-auto" >
+                {/* <Nav.Link href="/take-pic"><i class="camera icon"></i></Nav.Link> */}
                 <Auth0Button />
                 {/* <Nav.Link href="#link">Link</Nav.Link>  */}
             </Nav>
@@ -58,7 +58,7 @@ class App extends Component {
           <br />
           <Switch>
             <Route exact path='/' component={HomePage} />
-            <Route path='/show-pics' component={ShowPics} />
+            <PrivateRoute path='/show-pics' component={ShowPics} />
             <Route path='/show-pic-by-id/:id' component={ShowPicById} />
             <Route path='/show-map' component={ShowMap} />
             <Route path='/take-pic' component={TakePic} />

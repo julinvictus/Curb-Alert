@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from "./react-auth0-spa";
-import config from "./auth_config.json";
+//import config from "./auth_config.json";
+import { auth0_domain, auth0_clientId } from "./auth_config"
 
 // A function that routes the user to the right place
 // after login
@@ -18,16 +19,19 @@ const onRedirectCallback = appState => {
     );
 };
 
+
+
 ReactDOM.render(
     <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
+    domain={auth0_domain}
+    client_id={auth0_clientId}
     redirect_uri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
     >
     <App />, 
     </Auth0Provider>,
     document.getElementById('root')
+    
 );
 
 // If you want your app to work offline and load faster, you can change
