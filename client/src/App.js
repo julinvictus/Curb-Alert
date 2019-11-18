@@ -39,9 +39,9 @@ class App extends Component {
         <Navbar bg="light" expand="lg">
           <div className="container">
             <Navbar.Brand href="/">CURB-ALERT</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto" >
+            {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+            {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+            <Nav className="justify-content-end">
                 {/* <Nav.Link href="/take-pic"><i class="camera icon"></i></Nav.Link> */}
                 <Auth0Button />
                 {/* <Nav.Link href="#link">Link</Nav.Link>  */}
@@ -50,7 +50,7 @@ class App extends Component {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-success">Search</Button>
             </Form> */}
-            </Navbar.Collapse>
+            {/* </Navbar.Collapse> */}
           </div>
         </Navbar>
 

@@ -20,15 +20,12 @@ const Auth0Button = () => {
 
       )}
 
-      {isAuthenticated && <button class="mini ui button" onClick={() => logout()}>Log out</button>}
-
       {isAuthenticated && user && (
         
       <span>
         &nbsp;
         <Link to="/take-pic">
-          <i class="camera icon"></i>
-        
+          <i class="large camera icon"></i>
         </Link>
         {/* <Link to="/profile"> */}
           <img 
@@ -40,6 +37,8 @@ const Auth0Button = () => {
         {/* </Link> */}
       </span>
     )}
+
+    {isAuthenticated && <button class="mini ui button" onClick={() => logout()}>Log out</button>}
     </div>
   );
 };
