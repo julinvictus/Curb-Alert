@@ -70,7 +70,21 @@ class ShowPicById extends Component {
     console.log('longitude', this.state.longitude)
 
     let PicItem = <div>
-      <table className="table table-hover table-dark">
+      <div className="ui fluid card">     
+        <div className="card">
+            <div className="content">
+                <div className="single-card"><h4><b>{this.state.title}</b></h4></div>      
+            </div>
+            <div className="image">
+              <img src={`${this.state.image_url}`} width="100%" alt="free item" />
+            </div>   
+            
+        </div>   
+      </div>
+    
+    
+    
+      {/* <table className="table table-hover table-dark">
         <tbody>
           <tr>
             <td>{this.state.title}</td>
@@ -79,7 +93,7 @@ class ShowPicById extends Component {
             <td><img src={`${this.state.image_url}`} width="100%" alt="free item" /></td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
       <div> 
         <Map
           google={this.props.google}
@@ -134,23 +148,9 @@ class ShowPicById extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-10 m-auto">
-              <br /> <br />
-              {/* <Link to="/show-pics" className="btn btn-outline-warning float-left">
-                  Show Posts
-              </Link> */}
+              { PicItem }
             </div>
-            <br />
-            {/* <div className="col-md-8 m-auto">
-
-              <hr /> <br />
-            </div> */}
           </div>
-          <div>
-            { PicItem }
-          </div>
-          
-
-
         </div>
       </div>
     );
