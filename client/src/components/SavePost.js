@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import swal from 'sweetalert';
 import axios from 'axios';
 import ImagePreview from './ImagePreview'; 
 var aws = require('aws-sdk'); 
@@ -106,7 +107,17 @@ class SavePost extends Component {
           longitude:'',
           claimed: ''
         })
-        this.props.history.push('/');
+        swal(
+          {
+            title: "Yay!",
+            text: "Post added 🎉",
+            icon: "success"
+          })
+          .then((value) => {
+            this.props.history.push('/');
+          });
+        //alert('Post added! 🎉');
+        //this.props.history.push('/');
         console.log('Post added to db')
       })
       .catch(err =>{
