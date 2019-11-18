@@ -38,7 +38,7 @@ class App extends Component {
       <Router>
         <Navbar bg="light" expand="lg">
           <div className="container">
-            <Navbar.Brand href="#home">CURB-ALERT</Navbar.Brand>
+            <Navbar.Brand href="/">CURB-ALERT</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto" >

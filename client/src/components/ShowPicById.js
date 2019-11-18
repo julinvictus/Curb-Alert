@@ -1,85 +1,132 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import '../App.css';
 import axios from 'axios';
+
+const mapStyles = {
+  map: {
+    position: 'absolute',
+    width: '500px',
+    height: '500px'
+  }
+};
 
 class ShowPicById extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        
+        // state for db
         title: "",
-        image_url: ""
+        image_url: "",
+        latitude: "",
+        longitude: "",
+        // state for googlemaps api
+        showingInfoWindow: false,  
+        activeMarker: {},         
+        selectedPlace: {}
     };
   }
+
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+    })
+  }
+  onClose = props => {
+      if (this.state.showingInfoWindow) {
+          this.setState({
+              showingInfoWindow: false,
+              activeMarker: null
+          });
+      }
+  };
 
   componentDidMount() {
     console.log("Print id: " + this.props.match.params.id);
     axios
       .get('/api/posts/'+this.props.match.params.id)
       .then(res => {
-        //console.log("Print-ShowPicById-API-response: res.data");
-        
         var data = res.data;
         console.log("data var: " +data);
         this.setState({
-          
           title: data.title,
-          image_url: data.image_url
+          image_url: data.image_url,
+          latitude: parseFloat(data.latitude.$numberDecimal),
+          longitude: parseFloat(data.longitude.$numberDecimal),
         })
         console.log(this.state);
       })
       .catch(err => {
         console.log("Error from ShowPicById");
       })
-    
-
   };
 
-  // onDeleteClick () {
-  //   var picId = this.state.id
-
-  //   axios
-  //     .delete('http://localhost:5000/pic/'+picId)
-  //     .then(res => {
-  //       this.props.history.push("/");
-  //     })
-  //     .catch(err => {
-  //       console.log("Error form ShowPicById_deleteClick");
-  //     })
-  // };
-
-
   render() {
-      console.log('inside render function');
-    //changed
-    //const post = this.state.post;
-    //console.log("HELLO!"+post);
     console.dir(this.state);
+    console.log('latitude', this.state.latitude)
+    console.log('longitude', this.state.longitude)
+
     let PicItem = <div>
       <table className="table table-hover table-dark">
-        {/* <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead> */}
         <tbody>
           <tr>
-            {/* <th scope="row">1</th> */}
-            {/* <td>Title</td> */}
             <td>{this.state.title}</td>
           </tr>
           <tr>
-            {/* <th scope="row">2</th> */}
-            {/* <td>Image</td> */}
             <td><img src={`${this.state.image_url}`} width="100%" alt="free item" /></td>
           </tr>
-
         </tbody>
       </table>
+      <div> 
+        <Map
+          google={this.props.google}
+          zoom={14}
+          style={mapStyles}
+          center={
+            //this.latLngForMap
+            // { 
+            //   lat: this.state.latitude.$numberDecimal, 
+            //   lng: this.state.longitude.$numberDecimal
+            // } // lat/lng bet double quotes, map empty
+            // { 
+            //   lat: parseFloat(this.state.latitude), 
+            //   lng: parseFloat(this.state.longitude)
+            // } // map empty
+            { 
+              lat: this.state.latitude, 
+              lng: this.state.longitude
+            } // map empty
+            // { 
+            // lat: 37.813213, 
+            // lng: -122.281374
+            // }
+          }
+        >
+          <Marker 
+            onClick={this.onMarkerClick} 
+            name={this.state.title} 
+            position={
+              {
+                lat: this.state.latitude, 
+                lng: this.state.longitude
+              }
+            }
+            
+          />
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+            <div>
+              <h6>{this.state.selectedPlace.name}</h6>
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
     </div>
 
     return (
@@ -88,24 +135,21 @@ class ShowPicById extends Component {
           <div className="row">
             <div className="col-md-10 m-auto">
               <br /> <br />
-              <Link to="/show-pics" className="btn btn-outline-warning float-left">
+              {/* <Link to="/show-pics" className="btn btn-outline-warning float-left">
                   Show Posts
-              </Link>
+              </Link> */}
             </div>
             <br />
-            <div className="col-md-8 m-auto">
-              {/* <h1 className="display-4 text-center">Animal's Record</h1>
-              <p className="lead text-center">
-                  View Animal's Info
-              </p> */}
+            {/* <div className="col-md-8 m-auto">
+
               <hr /> <br />
-            </div>
+            </div> */}
           </div>
           <div>
             { PicItem }
           </div>
-
           
+
 
         </div>
       </div>
@@ -113,4 +157,7 @@ class ShowPicById extends Component {
   }
 }
 
-export default ShowPicById;
+//export default ShowPicById;
+export default GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GOOGLEMAPS_KEY
+})(ShowPicById);
