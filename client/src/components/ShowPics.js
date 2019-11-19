@@ -40,10 +40,14 @@ class ShowPic extends Component {
     }
 
     return (
+      // <div class="ui two column grid">
+      //   {postList}
+      // </div>
+
       <div className="ShowPics">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-xs-12 col-md-12">
               <div className="list">
                   {postList}
               </div>

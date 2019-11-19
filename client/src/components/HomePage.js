@@ -17,12 +17,12 @@ class HomePage extends Component {
             <div class="container">   
                 <div class="row">
                     {/* Photos Column */}
-                    <div class="col-md-8">
+                    <div class="col-xs-12 col-md-8">
                         <ShowPics />
                     </div>
 
                     {/* Map Column */}
-                    <div class="col-md-4">
+                    <div class="col-xs-12 col-md-4">
                         <ShowMap />
                     </div>
                 </div>
