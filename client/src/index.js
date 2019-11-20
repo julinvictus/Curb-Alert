@@ -27,6 +27,7 @@ ReactDOM.render(
     client_id={auth0_clientId}
     redirect_uri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
+    audience={'https://curb-alert-app.herokuapp.com'}
     >
     <App />, 
     </Auth0Provider>,
