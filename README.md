@@ -4,6 +4,20 @@ Techtonica final project
 Deployed at:
 [curb-alert-app.herokuapp.com](https://curb-alert-app.herokuapp.com/)
 
+MERN stack project using
+- MongoDB
+- Express
+- React
+- Node.js
+- GoogleMaps API 
+- AWS S3
+- Auth0
+- Mongoose
+- Axios
+- Bootstrap
+- Moment.js
+- SweetAlert.js
+
 Run server: 
 ```
 $ npm start
