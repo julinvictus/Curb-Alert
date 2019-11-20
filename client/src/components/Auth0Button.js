@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "../react-auth0-spa";
 
@@ -32,6 +32,7 @@ const Auth0Button = () => {
             class="ui avatar image"
             src={user.picture}
             width="50"
+            alt="avatar"
           /> 
         {/* </Link> */}
       </span>

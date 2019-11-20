@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useAuth0 } from "./react-auth0-spa";
 import Profile from "./components/Profile";
 
 import './App.css';
@@ -18,7 +17,6 @@ import TakePic from './components/TakePic';
 import SavePost from './components/SavePost';
 import HomePage from './components/HomePage';
 import Auth0Button from './components/Auth0Button';
-import Spinner from './components/Spinner';
 import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {  

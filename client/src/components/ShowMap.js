@@ -69,7 +69,7 @@ export class ShowMap extends Component {
         > 
             <div>
                 <h6>{this.state.selectedPlace.name}</h6>
-                <img src={this.state.selectedPlace.image}  width="100%"/>
+                <img src={this.state.selectedPlace.image}  width="100%" alt="map"/>
             </div>
         </InfoWindow> 
         

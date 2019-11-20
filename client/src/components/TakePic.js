@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
  
 class TakePic extends Component {
   constructor (props, context) {
