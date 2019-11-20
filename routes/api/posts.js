@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Load Post model
-const Post = require('../../models/Post');
+const Post = require('./models/Post');
 
 router.get('/test', (req, res) => res.send('post route testing!'));
 
