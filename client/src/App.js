@@ -20,19 +20,8 @@ import HomePage from './components/HomePage';
 import Auth0Button from './components/Auth0Button';
 import Spinner from './components/Spinner';
 import PrivateRoute from "./components/PrivateRoute";
-//import Claimed from './components/Claimed';
 
-
-
-class App extends Component {
-  
-  // const { loading } = useAuth0();
-  // if (loading) {
-  //   return (
-  //     <div>Loading...</div>
-  //   );
-  // }
-
+class App extends Component {  
   render() {
     return (
       <Router>
@@ -53,7 +42,6 @@ class App extends Component {
             {/* </Navbar.Collapse> */}
           </div>
         </Navbar>
-
         <div className="container">
           <br />
           <Switch>
@@ -65,8 +53,7 @@ class App extends Component {
             <Route path='/save-post' component={SavePost} />
             <PrivateRoute path="/profile" component={Profile} />
           </Switch>
-        </div>
-        
+        </div>       
       </Router>
     );
   }

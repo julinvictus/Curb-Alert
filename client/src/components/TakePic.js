@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-
-// source code : ./src/demo/AppWithImagePreview/ImagePreview
  
 class TakePic extends Component {
   constructor (props, context) {
@@ -29,9 +27,6 @@ class TakePic extends Component {
               imageType = {IMAGE_TYPES.JPG}
               imageCompression = {0.97}
             />
-          
-            // ? <ImagePreview dataUri={this.state.dataUri} />
-            // : <Camera onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone} />
         }
       </div>
     );

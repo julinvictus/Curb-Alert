@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import '../App.css';
 import axios from 'axios';
+
+import '../App.css';
 
 const mapStyles = {
   map: {
@@ -81,42 +82,16 @@ class ShowPicById extends Component {
             
         </div>   
       </div>
-    
-    
-    
-      {/* <table className="table table-hover table-dark">
-        <tbody>
-          <tr>
-            <td>{this.state.title}</td>
-          </tr>
-          <tr>
-            <td><img src={`${this.state.image_url}`} width="100%" alt="free item" /></td>
-          </tr>
-        </tbody>
-      </table> */}
       <div> 
         <Map
           google={this.props.google}
           zoom={14}
           style={mapStyles}
           center={
-            //this.latLngForMap
-            // { 
-            //   lat: this.state.latitude.$numberDecimal, 
-            //   lng: this.state.longitude.$numberDecimal
-            // } // lat/lng bet double quotes, map empty
-            // { 
-            //   lat: parseFloat(this.state.latitude), 
-            //   lng: parseFloat(this.state.longitude)
-            // } // map empty
             { 
               lat: this.state.latitude, 
               lng: this.state.longitude
-            } // map empty
-            // { 
-            // lat: 37.813213, 
-            // lng: -122.281374
-            // }
+            } 
           }
         >
           <Marker 
@@ -157,7 +132,6 @@ class ShowPicById extends Component {
   }
 }
 
-//export default ShowPicById;
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLEMAPS_KEY
 })(ShowPicById);

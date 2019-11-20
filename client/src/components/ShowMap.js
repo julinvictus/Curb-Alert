@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
-//import '../App.css';
 import axios from 'axios';
-//import { Link } from 'react-router-dom';
-//import PicCard from './PicCard';
-
-
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+
 import CurrentLocation from './CurrentLocation';
 
 export class ShowMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
             post: [],
-           // state = {
-                showingInfoWindow: false,  //Hides or the shows the infoWindow
-                activeMarker: {},          //Shows the active marker upon click
-                selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
-            //};
+            showingInfoWindow: false,  //Hides or the shows the infoWindow
+            activeMarker: {},          //Shows the active marker upon click
+            selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
         };
     }
 
@@ -62,18 +55,13 @@ export class ShowMap extends Component {
                 }}
                 name={post.title} 
                 image={post.image_url}
-                // onClick={() => console.log(post.title)}
                 onClick={this.onMarkerClick}
-               
             />
         }) 
     }
 
     displayInfoWindow = () => {
-        const post = this.state.post.map((post, index) => {
-            //console.log(post.latitude.$numberDecimal);
-            //console.log(post.longitude.$numberDecimal);
-             
+        const post = this.state.post.map((post, index) => {            
             return <InfoWindow key={index} id={index}
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -82,9 +70,6 @@ export class ShowMap extends Component {
             <div>
                 <h6>{this.state.selectedPlace.name}</h6>
                 <img src={this.state.selectedPlace.image}  width="100%"/>
-                {/* <img src={`${post.image_url}`}  width="100%"/> */}
-                {/* <img src={post.image_url} width="100%" /> */}
-                {/* <img src={this.state.post.image_url}  /> //nothing */}
             </div>
         </InfoWindow> 
         
@@ -96,31 +81,7 @@ export class ShowMap extends Component {
     render() {
         const posts = this.state.post;
         console.log(posts);
-        //let postsList;
-
-        // if(!posts) {
-        //     postsList = "there is no record!";
-        //   } else {
-        //     postsList = posts.map((post, index) => 
-        //         //console.log(post.latitude.$numberDecimal);
-        //       <Marker key={index} id={index} position={{
-        //        lat: post.latitude.$numberDecimal,
-        //        lng: post.longitude.$numberDecimal
-        //      }}/>
-        //     );
-        // }
-        // console.log(postsList);
-
         return (
-        // <Map
-        //     google={this.props.google}
-        //     zoom={14}
-        //     style={{width: '100%', height: '100%'}}
-        //     initialCenter={{
-        //     lat: 37.8044,
-        //     lng: -122.2712
-        //     }}
-        // >
         
          <CurrentLocation
               centerAroundCurrentLocation
@@ -128,41 +89,7 @@ export class ShowMap extends Component {
          >  
             {this.displayMarkers()}
             {this.displayInfoWindow()}
-            {/* <Marker
-                onClick={this.onMarkerClick}
-                name={'Nice chairs'}
-            /> */}
-            {/* <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.onClose}
-            > 
-                <div>
-                    <h4>hi</h4>
-                </div>
-            </InfoWindow> */}
-
-            {/* {postsList} */}
-            {/* <Marker
-                name={'Dolores park'}
-                position={{lat: 37.759703, lng: -122.428093}} />
-            <Marker /> */}
-            {/* {posts.map((post, index) => {
-                return <Marker
-                    key={index}
-                    position={{
-                                lat: parseFloat(post.latitude.$numberDecimal),
-                                lng: parseFloat(post.longitude.$numberDecimal)
-                    }}
-                    //onClick={this.onMarkerClick}
-                    //name={this.props.locations[idx].title}
-
-                />
-            })} */}
-
-            {/* <Marker name={'current location'} /> */}
         </CurrentLocation>
-        //</Map>
         );
     }
 }

@@ -1,10 +1,11 @@
 const express = require('express');
 const connectDB = require('./config/db');
-require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config();
+
 const port = process.env.PORT || 5000;
 
 const usersRoutes = require('./routes/api/users');
@@ -16,7 +17,7 @@ connectDB()
 // cors
 app.use(cors({ origin: true, credentials: true }));
 
-// ... other app.use middleware 
+// app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 // body-parser
@@ -34,7 +35,7 @@ app.get('/', (request, response) => {
 app.use('/api', usersRoutes);
 app.use('/api', postRoutes);
 
-// Right before your app.listen(), add this:
+// Added for deployment
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-//import { Link } from 'react-router-dom';
-import PicCard from './PicCard';
 
+import PicCard from './PicCard';
 
 class ShowPic extends Component {
   constructor(props) {

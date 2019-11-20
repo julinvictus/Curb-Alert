@@ -33,7 +33,6 @@ const Auth0Button = () => {
             src={user.picture}
             width="50"
           /> 
-          
         {/* </Link> */}
       </span>
     )}

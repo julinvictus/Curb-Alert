@@ -7,6 +7,9 @@ var aws = require('aws-sdk');
 require('dotenv').config();
 const imageName = new Date().getTime() + '.jpg';
 
+
+
+
 class SavePost extends Component {
   constructor() {
     super();
@@ -37,10 +40,6 @@ class SavePost extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
-  // addUrlToDb = (data) => {
-  //   this.setState({ image_url: data.Location });
-  // } 
 
   onSubmit = e => {
     e.preventDefault();
@@ -86,14 +85,8 @@ class SavePost extends Component {
             console.log("Error", err);
         } if (dataToS3) {
             console.log("Upload Success", dataToS3.Location);
-            //this.addUrlToDb(data);
-            // dataToDb.image_url = dataToS3.Location; // empty on db
-            // console.log(dataToDb.image_url);
         }
     });
-
-    //console.log(data.Location);
-    //this.setState({ image_url: data.Location }); // no url on db
     
     // send to db
     axios
@@ -116,8 +109,6 @@ class SavePost extends Component {
           .then((value) => {
             this.props.history.push('/');
           });
-        //alert('Post added! 🎉');
-        //this.props.history.push('/');
         console.log('Post added to db')
       })
       .catch(err =>{
