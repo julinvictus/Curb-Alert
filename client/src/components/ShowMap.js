@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import CurrentLocation from './CurrentLocation';
@@ -68,8 +69,13 @@ export class ShowMap extends Component {
             onClose={this.onClose}
         > 
             <div>
+                
                 <h6>{this.state.selectedPlace.name}</h6>
+                {/* <Link to={`/show-pic-by-id/${post._id}`}> */}
+                {/* <a href={`https://maps.google.com/maps?q=${this.state.latitude},${this.state.longitude}`}> */}
                 <img src={this.state.selectedPlace.image}  width="100%" alt="map"/>
+                {/* </a> */}
+                {/* </Link> */}
             </div>
         </InfoWindow> 
         

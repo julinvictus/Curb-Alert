@@ -34,7 +34,11 @@ class ShowPic extends Component {
       postList = "there is no post record!";
     } else {
       postList = posts.map((post, k) =>
-        <PicCard post={post} key={k} />
+        <div class="col-12 col-md-6 col-lg-4 pic-column" >
+          <div class="pic-card-wrapper">
+            <PicCard post={post} key={k} />
+          </div>
+        </div>
       );
     }
 
@@ -43,17 +47,21 @@ class ShowPic extends Component {
       //   {postList}
       // </div>
 
-      <div className="ShowPics">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-12">
-              <div className="list">
+      // <div className="ShowPics">
+      //   <div className="container">
+      //     <div className="row">
+      //       <div className="col-xs-12 col-md-12">
+      //         <div className="list">
+      <div class="row">
                   {postList}
-              </div>
-            </div>           
-          </div>
-        </div>
       </div>
+
+      
+      //         </div>
+      //       </div>           
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }

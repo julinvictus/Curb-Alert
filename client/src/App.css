@@ -32,7 +32,7 @@
   }
 }
 
-.Claimed {
+/* .Claimed {
   min-height: 100vh;
 }
 
@@ -54,18 +54,18 @@
 
 .ShowPicById {
   min-height: 100vh;
-}
+} */
 
 
 /* Styles */
-.list {
+/* .list {
   display: grid;
   margin: 20px 0 50px 0;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   grid-gap: 2em;
-  /* background-color: purple; */
-}
+  background-color: purple;
+} */
 
 .card-container {
   width: 250px;
@@ -97,4 +97,35 @@
 
 .single-card {
   padding: 15px;
+}
+.pic-column {
+  margin-bottom: 20px;
+}
+
+.pic-card-wrapper {
+  transform: translate3d(0,0,0);
+  transition: transform 30ms ease-out;
+}
+
+.pic-card-wrapper:hover {
+  transform: translate3d(0,-2px,0);
+}
+
+h5.card-title {
+  color: #000;
+}
+
+.pic-card-wrapper a {
+  text-decoration: none !important;
+}
+
+.card-body.image.bg {
+  background-size: cover;
+  height: 150px;
+}
+
+/* Bootstrap overrides */
+
+.card-body {
+  padding: 0 !important;
 }

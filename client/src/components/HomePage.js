@@ -10,14 +10,16 @@ class HomePage extends Component {
         return (
             // <!-- Page Content -->
             <div class="container">   
-                <div class="row">
+                <div class="row flex-column-reverse flex-md-row">
                     {/* Photos Column */}
-                    <div class="col-xs-12 col-md-8">
+
+                    <div class="col-12 col-md-8">
                         <ShowPics />
                     </div>
 
                     {/* Map Column */}
-                    <div class="col-xs-12 col-md-4">
+                    <div class="col-12 col-md-4 flex-column" style={{minHeight: '300px', marginBottom: '20px'}}>
+                       
                         <ShowMap />
                     </div>
                 </div>
