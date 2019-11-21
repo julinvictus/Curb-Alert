@@ -7,9 +7,6 @@ var aws = require('aws-sdk');
 require('dotenv').config();
 const imageName = new Date().getTime() + '.jpg';
 
-
-
-
 class SavePost extends Component {
   constructor() {
     super();

@@ -70,16 +70,13 @@ class ShowPicById extends Component {
     console.log('longitude', this.state.longitude)
 
     let PicItem = <div>
-      <div className="ui fluid card">     
-        <div className="card">
-            <div className="content">
-                <div className="single-card"><h4><b>{this.state.title}</b></h4></div>      
-            </div>
-            <div className="image">
-              <img src={`${this.state.image_url}`} width="100%" alt="free item" />
-            </div>   
-            
-        </div>   
+      <div class="card">
+        <div class="card-header">
+            <h5 class="card-title"><b>{this.state.title}</b></h5>
+        </div>
+        <div className="card-body" >
+            <img src={`${this.state.image_url}`} class="card-img" width="100%" alt="free item" />
+        </div>          
       </div>
       <div>
         <a href={`https://maps.google.com/maps?q=${this.state.latitude},${this.state.longitude}`} target="_blank"><button type="button" className="btn btn-outline-warning btn-block mt-4">Get directions on Google Maps! </button></a>

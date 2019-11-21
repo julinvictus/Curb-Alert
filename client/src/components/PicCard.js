@@ -26,9 +26,9 @@ const PicCard = (props) => {
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">{post.title}</h5>
+                    <h5 class="card-title"><b>{post.title}</b></h5>
                 </div>
-                <div className="card-body  bg" style={{ backgroundImage: 'url(' + post.image_url + ')', backgroundSize: 'cover', height: '150px', backgroundPosition: '50% 50%' }}>
+                <div className="card-body bg" style={{ backgroundImage: 'url(' + post.image_url + ')', backgroundSize: 'cover', height: '150px', backgroundPosition: '50% 50%' }}>
                     {/* <img src={`${post.image_url}`} class="card-img" width="100%" alt="free item" /> */}
                 </div>   
                 <div class="card-footer text-muted">
