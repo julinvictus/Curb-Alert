@@ -81,6 +81,9 @@ class ShowPicById extends Component {
             
         </div>   
       </div>
+      <div>
+        <a href={`https://maps.google.com/maps?q=${this.state.latitude},${this.state.longitude}`} target="_blank"><button type="button" className="btn btn-outline-warning btn-block mt-4">Get directions on Google Maps! </button></a>
+      </div><br />
       <div> 
         <Map
           google={this.props.google}
