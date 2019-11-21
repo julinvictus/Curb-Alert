@@ -1,6 +1,6 @@
 # Curb-Alert
 
-Curb-Alert is an app to find free stuff on curbs around you (or post free stuff!). Look for pictures/title of posted stuff, see if something interests you, click for address, go pick it up. You can also look at a map and find free stuff near you. After picked up, click on “claimed” so item is not on the list anymore. If you have stuff to donate, post a pic, put stuff in the curb and see magic happens! If you find stuff in the curb that you think is a score, take a pic, post it, and feel good about yourself!
+Curb-Alert is an app to find free stuff on curbs around you (or post free stuff!). Look for pictures/title of posted stuff, see if something interests you, click for address, go pick it up. You can also look at a map and find free stuff near you. If you have stuff to donate, post a pic, put stuff in the curb and see magic happens! If you find stuff in the curb that you think is a score, take a pic, post it, and feel good about yourself!
 
 ### MERN stack project using:
 - MongoDB
