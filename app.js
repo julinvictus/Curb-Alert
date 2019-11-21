@@ -8,7 +8,6 @@ require('dotenv').config();
 
 const port = process.env.PORT || 5000;
 
-const usersRoutes = require('./routes/api/users');
 const postRoutes = require('./routes/api/posts');
 
 // Connect Database
@@ -32,7 +31,6 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and MongoDB API' })
 })
 
-app.use('/api', usersRoutes);
 app.use('/api', postRoutes);
 
 // Added for deployment
