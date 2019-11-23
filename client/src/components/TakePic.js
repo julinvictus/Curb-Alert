@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Camera, {IMAGE_TYPES} from 'react-html5-camera-photo';
+import Camera, {FACING_MODES, IMAGE_TYPES} from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import { Redirect } from 'react-router-dom';
  
@@ -23,6 +23,7 @@ class TakePic extends Component {
           ? <Redirect to={{pathname: '/save-post', state: { uri: this.state.dataUri }}}/>
           : <Camera 
               onTakePhotoAnimationDone = {this.onTakePhotoAnimationDone}   
+              idealFacingMode = {FACING_MODES.ENVIRONMENT}
               idealResolution = {{width: 640, height: 480}}
               imageType = {IMAGE_TYPES.JPG}
               imageCompression = {0.97}
