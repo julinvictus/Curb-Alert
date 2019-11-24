@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Spinner from "./Spinner";
 
 const mapStyles = {
   map: {
     position: 'absolute',
-    width: '100%',
+    width: '94%',
     height: '100%'
   }
 };

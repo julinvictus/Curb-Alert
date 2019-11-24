@@ -18,8 +18,7 @@ class HomePage extends Component {
                     </div>
 
                     {/* Map Column */}
-                    <div class="col-12 col-md-4 flex-column" style={{minHeight: '300px', marginBottom: '20px'}}>
-                       
+                    <div class="col-12 col-md-4 flex-column homepage-map" style={{minHeight: '300px', maxHeight: '500px', marginBottom: '20px'}}>
                         <ShowMap />
                     </div>
                 </div>
