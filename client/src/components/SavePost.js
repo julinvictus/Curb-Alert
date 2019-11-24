@@ -119,11 +119,7 @@ class SavePost extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <br />
-
-            </div>
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">New post</h1>
+              <h2 className="display-5 text-center">New post</h2>
               <ImagePreview 
                 dataUri={this.props.history.location.state.uri} 
               />
