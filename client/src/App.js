@@ -25,7 +25,7 @@ class App extends Component {
       <Router>
         <Navbar bg="light" expand="lg">
           <div className="container">
-            <Navbar.Brand href="/" style={{fontFamily: 'Barlow Condensed', fontSize: 25}}><img src='/Logo.png' style={{width: '32px', height: 'auto'}}/><b> CURB-ALERT</b></Navbar.Brand>
+            <Navbar.Brand href="/" style={{fontFamily: 'Barlow Condensed', fontSize: 25}}><img src='/Logo.png' style={{width: '32px', height: 'auto'}} alt="logo"/><b> CURB-ALERT</b></Navbar.Brand>
             {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
             {/* <Navbar.Collapse id="basic-navbar-nav"> */}
             <Nav className="justify-content-end">
